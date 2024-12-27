@@ -1,32 +1,24 @@
 package com.sanaa.Calculatro;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.api.Assertions;
-public class CalculatroTest {
-    @ParameterizedTest
-    @CsvSource(
-            {
-                    "1,1,2",
-                    "2,3,5",
-                    "4,4,8"
-            }
-    )
-    public void testAddition(int x, int y, int z) {
-        int result = Calculatro.add(x, y);
-        Assertions.assertEquals(z,result,"2+3 doit etre egal a 5");
-    }
-    @ParameterizedTest
-    @CsvSource(
-            {
-                    "1,1,1",
-                    "4,2,2",
-                    "4,4,1"
-            }
-    )
-    public void testdivision(int a,int b, int d)
-    {
-        int r=Calculatro.divide(a,b);
-        Assertions.assertEquals(d,r,"4/2 doit etre egal a 2");
+import org.junit.jupiter.api.Test;
+import java.util.Set;
 
+public class CalculatroTest{
+     @Test
+    public void testEnsembleChiffres() {
+        Calculatro calc = new Calculatro();
+
+        // Test avec un nombre positif
+        Set<Integer> result1 = calc.ensembleChiffres(7679);
+        Assertions.assertEquals(Set.of(6, 7, 9), result1);
+
+        // Test avec un nombre négatif
+        Set<Integer> result2 = calc.ensembleChiffres(-11);
+        Assertions.assertEquals(Set.of(1), result2);
+
+        // Test avec un seul chiffre
+        Set<Integer> result3 = calc.ensembleChiffres(0);
+        Assertions.assertEquals(Set.of(), result3); // Ensemble vide
     }
 }
+
